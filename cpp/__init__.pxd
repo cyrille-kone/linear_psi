@@ -1,0 +1,1 @@
+__doc__ = r" This file contains c++ implemented algorithms interfaced with python via cython"
