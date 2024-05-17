@@ -9,9 +9,9 @@ from distutils.extension import Extension
 
 extra_compile_args = ["-std=c++17", "-march=native", ] #"-ffast-math"
 language = "c++"
-
-extra_compile_args = ["-std=c++17", "-O2", "-march=native" ] #"-fopenmp"
-extra_link_args = ['-Wl,-rpath,/opt/homebrew/Cellar/gcc/13.2.0/lib/gcc/13']#'-fopenmp'
+# link to gcc headers may be required if not find automatically
+# eg on ARM with gcc 13 here is a fix for the linker
+#extra_link_args = ['-Wl,-rpath,/opt/homebrew/Cellar/gcc/13.2.0/lib/gcc/13']
 language = "c++"
 
 setup(name="cpp",
@@ -22,7 +22,7 @@ setup(name="cpp",
                        "cpp/src/utils.cxx"],
               language=language,
               extra_compile_args=extra_compile_args,
-              extra_link_args=extra_link_args
+              #extra_link_args=extra_link_args
           ),
           Extension(
              name="cpp.policies",
@@ -30,7 +30,7 @@ setup(name="cpp",
                       "cpp/src/utils.cxx"],
              language=language,
              extra_compile_args=extra_compile_args,
-             extra_link_args=extra_link_args
+             #extra_link_args=extra_link_args
          )
       ]),
       language_level=3,
